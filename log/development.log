@@ -20,3 +20,32 @@ Completed 200 OK in 45ms (Views: 44.4ms)
   MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 1.0240ms
   MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.9990ms
   MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 0.9900ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 6.7850ms
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} runtime: 6.6240ms
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-10 18:11:47 -0400
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (2.6ms)
+Completed 200 OK in 1053ms (Views: 1040.9ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-10-10 18:11:48 -0400
