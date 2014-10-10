@@ -11,4 +11,3 @@ deploy:
   app: beforeheaveniqp
   on:
     repo: rossfoley/beforeheaveniqp_server
-    branch: master
