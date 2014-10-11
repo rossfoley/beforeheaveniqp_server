@@ -27,10 +27,10 @@ class User
   field :last_sign_in_ip,    type: String
 
   ## SoundCloud access token
-  field :access_token, type: String, default: ''
+  field :soundcloud_access_token, type: String, default: ''
 
   def has_soundcloud?
-    access_token.length > 0
+    soundcloud_access_token.length > 0
   end
 
   # Necessary to make Devise work with Rails 4.1 and Mongoid
