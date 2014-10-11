@@ -13,7 +13,7 @@ class SoundcloudController < ApplicationController
 
   def callback
     if params[:code]
-      access_token = client.exchange_token(code: params[:code])
+      access_token = @client.exchange_token(code: params[:code])
       current_user.access_token = access_token
       current_user.save
       redirect_to soundcloud_path, notice: 'Successfully linked your SoundCloud account!'
