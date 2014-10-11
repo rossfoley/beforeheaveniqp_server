@@ -16,8 +16,7 @@ class SoundcloudController < ApplicationController
 
   def callback
     if params[:code]
-      access_token = @client.exchange_token(code: params[:code])
-      current_user.soundcloud_access_token = access_token
+      current_user.soundcloud_access_token = @client.exchange_token(code: params[:code]).access_token
       current_user.save
       redirect_to soundcloud_url, notice: 'Successfully linked your SoundCloud account!'
     else
@@ -30,7 +29,7 @@ class SoundcloudController < ApplicationController
     options = { client_id: '0cb45a6052596ee086177b11b29e8809', 
                 client_secret: 'b6261a4c23a845ad6d6a1f585c1249a7',
                 redirect_uri: 'http://beforeheaveniqp.herokuapp.com/soundcloud/callback' }
-    options[:access_token] = current_user.soundcloud_access_token if current_user.reload.has_soundcloud?
+    options[:access_token] = current_user.soundcloud_access_token if current_user.has_soundcloud?
     @client = SoundCloud.new(options)
   end
 end
