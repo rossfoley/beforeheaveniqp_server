@@ -4,10 +4,10 @@ rvm:
 services:
 - mongodb
 - redis-server
-deploy:
-  provider: heroku
-  api_key:
-    secure: cyFMxmy9UJxJBgxHIRyOH5Qf+/BnwbydLTYP/XB11o5FDmJ0bkA3269jcxZVHovdn8RUPfyFLej1RB/fDmrlbz19squZcojdLMbtjsoST4TwzO1SxdbCgWOMLwPEPn36qSex7z56eEV4dWWbgalumSUA5rZecAKXrXthJNWYIOU=
-  app: beforeheaveniqp
-  on:
-    repo: rossfoley/beforeheaveniqp_server
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: cyFMxmy9UJxJBgxHIRyOH5Qf+/BnwbydLTYP/XB11o5FDmJ0bkA3269jcxZVHovdn8RUPfyFLej1RB/fDmrlbz19squZcojdLMbtjsoST4TwzO1SxdbCgWOMLwPEPn36qSex7z56eEV4dWWbgalumSUA5rZecAKXrXthJNWYIOU=
+#   app: beforeheaveniqp
+#   on:
+#     repo: rossfoley/beforeheaveniqp_server
