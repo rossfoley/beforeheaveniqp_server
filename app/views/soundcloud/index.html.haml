@@ -4,7 +4,7 @@
   %h2 Tracks:
   %ul
     - @tracks.each do |track|
-      %li= link_to track.title, track.stream_url
+      %li= link_to track.title, "#{track.stream_url}?client_id=0cb45a6052596ee086177b11b29e8809"
 - else
   = link_to soundcloud_authorize_path do
     = image_tag 'soundcloud_connect.png'
