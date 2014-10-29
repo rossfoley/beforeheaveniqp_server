@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # API Endpoints
   namespace :api do
     post 'user/login' => 'user#login'
+    get 'rooms' => 'room#index'
   end
 end
