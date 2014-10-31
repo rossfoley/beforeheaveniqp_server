@@ -9,7 +9,8 @@ class Api::RoomController < Api::BaseController
     else
       room_data = params.require(:room_data).permit!
     end
-    room = Room.create_from_data(room_data)
+    room = Room.create(room_data)
+    room.add_band_member current_user
     success room
   end
 end

@@ -3,7 +3,7 @@ class Room
 
   field :name, type: String
   field :genre, type: String
-  field :visits, type: Integer
+  field :visits, type: Integer, default: 0
   field :member_ids, type: Array, default: []
 
   ################
