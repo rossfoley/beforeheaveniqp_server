@@ -23,4 +23,12 @@ class Room
   def band_members
     User.in(id: member_ids)
   end
+
+  def self.create_from_data(data)
+    data = data.with_indifferent_access
+    data[:member_ids].map! do |mid|
+      BSON::ObjectId.from_string mid
+    end
+    create data
+  end
 end

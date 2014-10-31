@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   namespace :api do
     post 'user/login' => 'user#login'
     get 'rooms' => 'room#index'
+    post 'room' => 'room#create'
   end
 end
