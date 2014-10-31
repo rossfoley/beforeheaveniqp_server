@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '*path' => 'application#cors_preflight_check', via: :options, constraints: {method: 'OPTIONS'}
+  
   devise_for :users
 
   # SoundCloud account linking

@@ -17,7 +17,7 @@ class User
   field :remember_created_at, type: Time
 
   ## Token authentication
-  field :authentication_token, type: String
+  field :authentication_token
 
   ## Trackable
   field :sign_in_count,      type: Integer, default: 0
