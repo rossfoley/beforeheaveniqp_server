@@ -22,4 +22,16 @@ RSpec.describe Room, :type => :model do
       expect(@room.band_members).to be_empty
     end
   end
+
+  describe '#create_from_data' do
+    it 'properly creates a Room from JSON data' do
+      user = create :user
+      room_data = {'genre'=>'Room genre', 
+                   'member_ids'=>[user.id.to_s], 
+                   'name'=>'Room name',
+                   'visits'=>1000}
+      room = Room.create_from_data room_data
+      expect(room.band_members).to_not be_empty
+    end
+  end
 end
