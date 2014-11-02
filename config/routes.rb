@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     post 'user/login' => 'user#login'
     get 'rooms' => 'room#index'
     post 'room' => 'room#create'
+    put 'room/:room_id/add_band_member/:new_member_email', to: 'room#add_band_member', format: false, constraints: { new_member_email: /[^\/]+/}
   end
 end
