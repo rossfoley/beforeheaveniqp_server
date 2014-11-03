@@ -5,6 +5,7 @@ class Room
   field :genre, type: String
   field :visits, type: Integer, default: 0
   field :member_ids, type: Array, default: []
+  field :current_song, type: String, default: ''
 
   ################
   # Band Members #

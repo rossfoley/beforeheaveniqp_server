@@ -14,12 +14,17 @@ class Api::RoomController < Api::BaseController
     success room
   end
 
+  def current_song
+    room = Room.find(params[:room_id])
+    success room.current_song
+  end
+
   def add_band_member
-    room = Room.find( params[:room_id])
-    user = User.where( email: params[:new_member_email]).first
+    room = Room.find(params[:room_id])
+    user = User.where(email: params[:new_member_email]).first
     if room
       if user
-        room.add_band_member( user)
+        room.add_band_member(user)
         success room
       else
         failure :not_found, 'User with specified email does not exist'
