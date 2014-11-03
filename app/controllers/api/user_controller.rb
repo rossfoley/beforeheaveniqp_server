@@ -4,7 +4,6 @@ class Api::UserController < BaseController
       user = User.where(email: params[:email]).first
       if user
         if user.valid_password? params[:password]
-          sign_in :user, user
           success user
         else
           failure :not_acceptable, 'Incorrect password'
