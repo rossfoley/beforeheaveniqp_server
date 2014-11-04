@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'rooms', to: 'room#index'
     get 'rooms/search/:search_term', to: 'room#search'
     get 'room/:room_id/current_song', to: 'room#current_song'
+    get 'room/:room_id', to: 'room#show'
     post 'room', to: 'room#create'
     put 'room/:room_id/add_band_member/:new_member_email', 
         to: 'room#add_band_member', 
