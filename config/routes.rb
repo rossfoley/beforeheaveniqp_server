@@ -13,8 +13,12 @@ Rails.application.routes.draw do
   
   # API Endpoints
   namespace :api do
+    # Users
     post 'user/login', to: 'user#login'
+
+    # Rooms
     get 'rooms', to: 'room#index'
+    get 'rooms/search/:search_term', to: 'room#search'
     get 'room/:room_id/current_song', to: 'room#current_song'
     post 'room', to: 'room#create'
     put 'room/:room_id/add_band_member/:new_member_email', 

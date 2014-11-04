@@ -1,5 +1,6 @@
 class Room
   include Mongoid::Document
+  include Mongoid::Search
 
   field :name, type: String
   field :genre, type: String
@@ -7,6 +8,8 @@ class Room
   field :member_ids, type: Array, default: []
   field :current_song, type: String, default: ''
   field :unity_data, type: String, default: ''
+
+  search_in :name, :genre
 
   ################
   # Band Members #

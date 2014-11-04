@@ -3,6 +3,10 @@ class Api::RoomController < Api::BaseController
     success Room.all.to_a
   end
 
+  def search
+    success Room.full_text_search(params[:search_term]).to_a
+  end
+
   def create
     if params[:room_data].is_a? String
       room_data = JSON.parse params[:room_data]
