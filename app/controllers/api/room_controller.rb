@@ -11,6 +11,17 @@ class Api::RoomController < Api::BaseController
     success Room.find(params[:room_id])
   end
 
+  def update
+    if params[:room_data].is_a? String
+      room_data = JSON.parse params[:room_data]
+    else
+      room_data = params.require(:room_data).permit! :name, :genre, :unity_data
+    end
+    room = Room.find(params[:room_id])
+    room.update_attributes room_data
+    success room
+  end
+
   def create
     if params[:room_data].is_a? String
       room_data = JSON.parse params[:room_data]
