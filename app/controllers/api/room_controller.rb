@@ -30,12 +30,13 @@ class Api::RoomController < Api::BaseController
     end
     room = Room.create(room_data)
     room.add_band_member current_user
+    room.initialize_playlist
     success room
   end
 
   def current_song
     room = Room.find(params[:room_id])
-    success room.current_song
+    success room.current_song_url
   end
 
   def add_band_member

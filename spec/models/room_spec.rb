@@ -23,15 +23,21 @@ RSpec.describe Room, :type => :model do
     end
   end
 
-  describe '#create_from_data' do
-    it 'properly creates a Room from JSON data' do
-      user = create :user
-      room_data = {'genre'=>'Room genre', 
-                   'member_ids'=>[user.id.to_s], 
-                   'name'=>'Room name',
-                   'visits'=>1000}
-      room = Room.create_from_data room_data
-      expect(room.band_members).to_not be_empty
+  describe 'SoundCloud playlists' do
+    before :each do
+      playlist = {'duration' => 20000, 
+                  'tracks' => [{'duration' => 11000, 'stream_url' => 'test1'},
+                               {'duration' => 9000, 'stream_url' => 'test2'}]}
+      @room = create :room, playlist: playlist
+    end
+
+    it 'can determine the current song playing' do
+      @room.started_at = DateTime.now
+      expect(@room.current_song).to_not be_nil
+      expect(@room.current_song['stream_url']).to eq('test1')
+
+      @room.started_at = 13.seconds.ago
+      expect(@room.current_song['stream_url']).to eq('test2')
     end
   end
 end
