@@ -19,6 +19,7 @@ class Api::RoomController < Api::BaseController
     end
     room = Room.create(room_data)
     room.add_band_member current_user
+    room.initialize_playlist
     success room
   end
 
