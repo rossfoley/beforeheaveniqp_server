@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   namespace :api do
     # Users
     post 'user/login', to: 'user#login'
-    get 'user/search/:search_term', to: 'user#search'
+    put 'user/:user_email/add_friend/:new_friend_email', 
+        to: 'room#add_friend', 
+        format: false, 
+        constraints: { new_member_email: /[^\/]+/}
 
     # Rooms
     get 'rooms', to: 'room#index'

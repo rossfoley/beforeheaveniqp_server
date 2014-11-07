@@ -29,6 +29,27 @@ class User
   ## SoundCloud access token
   field :soundcloud_access_token, type: String, default: ''
 
+  ## Friends list
+  field :friend_ids, type: Array, default: []
+
+  ##################
+  ## Friends List ##
+  ##################
+
+  def add_friend(user)
+    friend_ids << user.id
+    save
+  end
+
+  def remove_friend(user)
+    friend_ids.delete user.id
+    save
+  end
+
+  def friend
+    User.in(id: member_ids)
+  end
+
   def has_soundcloud?
     soundcloud_access_token.length > 0
   end
