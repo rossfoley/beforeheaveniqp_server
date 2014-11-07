@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     # Users
     post 'user/login', to: 'user#login'
+    get 'user/search/:search_term', to: 'user#search'
 
     # Rooms
     get 'rooms', to: 'room#index'
