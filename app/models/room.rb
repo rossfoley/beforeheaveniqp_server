@@ -52,7 +52,7 @@ class Room
     if playlist
       elapsed_ms = ((DateTime.now - started_at) * 24 * 60 * 60 * 1000).to_i
       playlist_location = elapsed_ms % playlist['duration']
-      song = playlist['tracks'].find do |track|
+      playlist['tracks'].find do |track|
         if playlist_location > track['duration']
           playlist_location -= track['duration']
           false
@@ -60,9 +60,15 @@ class Room
           true
         end
       end
-      "#{song['stream_url']}?client_id=0cb45a6052596ee086177b11b29e8809"
     else
-      ''
+      nil
+    end
+  end
+
+  def current_song_url
+    song = current_song
+    if song
+      "#{song['stream_url']}?client_id=0cb45a6052596ee086177b11b29e8809"
     end
   end
 end
