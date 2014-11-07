@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+
   acts_as_token_authenticatable
 
   devise :database_authenticatable, :registerable,
@@ -46,7 +47,7 @@ class User
     save
   end
 
-  def friend
+  def friends
     User.in(id: member_ids)
   end
 

@@ -3,12 +3,8 @@ class Api::RoomController < Api::BaseController
     success Room.all.to_a
   end
 
-  def search
-    success Room.full_text_search(params[:search_term]).to_a
-  end
-
   def show
-    success Room.find(params[:room_id])
+    success Room.find(params[:id])
   end
 
   def update
@@ -17,7 +13,7 @@ class Api::RoomController < Api::BaseController
     else
       room_data = params.require(:room_data).permit! :name, :genre, :unity_data
     end
-    room = Room.find(params[:room_id])
+    room = Room.find(params[:id])
     room.update_attributes room_data
     success room
   end
@@ -34,13 +30,24 @@ class Api::RoomController < Api::BaseController
     success room
   end
 
+  def destroy
+    room = Room.find(params[:id])
+    if room.destroy
+      success
+    end
+  end
+
+  def search
+    success Room.full_text_search(params[:search_term]).to_a
+  end
+
   def current_song
-    room = Room.find(params[:room_id])
+    room = Room.find(params[:id])
     success room.current_song_url
   end
 
   def add_band_member
-    room = Room.find(params[:room_id])
+    room = Room.find(params[:id])
     user = User.where(email: params[:new_member_email]).first
     if room
       if user

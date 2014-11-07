@@ -14,22 +14,24 @@ Rails.application.routes.draw do
   # API Endpoints
   namespace :api do
     # Users
-    post 'user/login', to: 'user#login'
-    put 'user/:user_email/add_friend/:new_friend_email', 
-        to: 'room#add_friend', 
-        format: false, 
-        constraints: { new_member_email: /[^\/]+/}
+    scope 'user' do
+      post 'login', to: 'login#login'
+
+      scope ':id' do
+        put 'add_friend', to: 'user#add_friend'
+      end
+    end
 
     # Rooms
-    get 'rooms', to: 'room#index'
-    get 'rooms/search/:search_term', to: 'room#search'
-    get 'room/:room_id/current_song', to: 'room#current_song'
-    get 'room/:room_id', to: 'room#show'
-    put 'room/:room_id', to: 'room#update'
-    post 'room', to: 'room#create'
-    put 'room/:room_id/add_band_member/:new_member_email', 
-        to: 'room#add_band_member', 
-        format: false, 
-        constraints: { new_member_email: /[^\/]+/}
+    resources :rooms, except: [:new, :edit] do
+      member do
+        get 'current_song'
+        get 'add_band_member'
+      end
+
+      collection do
+        get 'search/:search_term', to: 'room#search'
+      end
+    end
   end
 end
