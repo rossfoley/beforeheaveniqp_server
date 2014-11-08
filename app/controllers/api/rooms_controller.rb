@@ -1,4 +1,4 @@
-class Api::RoomController < Api::BaseController
+class Api::RoomsController < Api::BaseController
   def index
     success Room.all.to_a
   end
