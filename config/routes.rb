@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       end
 
       collection do
-        get 'search/:search_term', to: 'room#search'
+        get 'search/:search_term', to: 'rooms#search'
       end
     end
   end
