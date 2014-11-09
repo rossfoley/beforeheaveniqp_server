@@ -16,9 +16,15 @@ class Room
   # Band Members #
   ################
 
+  def is_band_member?(user)
+    member_ids.include? user.id
+  end
+
   def add_band_member(user)
-    member_ids << user.id
-    save
+    unless is_band_member? user
+      member_ids << user.id
+      save
+    end
   end
 
   def remove_band_member(user)
