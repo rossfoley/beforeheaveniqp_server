@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # API Endpoints
   namespace :api do
     # Users
-    scope 'user' do
+    scope 'users' do
       post 'login', to: 'login#login'
 
       scope ':id' do
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :rooms, except: [:new, :edit] do
       member do
         get 'current_song'
-        get 'add_band_member'
+        put 'add_band_member'
       end
 
       collection do
