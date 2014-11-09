@@ -1,4 +1,4 @@
-class Api::UserController < BaseController
+class Api::UsersController < Api::BaseController
   def add_friend
     user = User.find(params[:id])
     friend = User.where(email: params[:new_friend_email]).first

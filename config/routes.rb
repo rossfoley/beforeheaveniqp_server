@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       post 'login', to: 'login#login'
 
       scope ':id' do
-        put 'add_friend', to: 'user#add_friend'
+        put 'add_friend', to: 'users#add_friend'
       end
     end
 
