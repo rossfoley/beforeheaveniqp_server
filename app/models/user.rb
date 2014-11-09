@@ -33,21 +33,43 @@ class User
   field :friend_ids, type: Array, default: []
 
   ##################
-  ## Friends List ##
+  # Friend Methods #
   ##################
 
-  def add_friend(user)
-    friend_ids << user.id
+  def make_friendship(friend)
+    self.add_friend(friend)
+    friend.add_friend(self)
+  end
+
+  def break_friendship(friend)
+    self.remove_friend(friend)
+    friend.remove_friend(self)
+  end
+
+  def friends
+    User.in(id: friend_ids)
+  end
+
+  def is_friends_with? other_user
+    friend_ids.include? other_user.id
+  end
+
+  def add_friend(friend)
+    unless is_friends_with? friend
+      friend_ids << friend.id
+      save
+    end
+  end
+
+  def remove_friend(friend)
+    friend_ids.delete friend.id
     save
   end
 
-  def remove_friend(user)
-    friend_ids.delete user.id
-    save
-  end
-
-  def friend
-    User.in(id: member_ids)
+  def remove_all_friends
+    friends.each do |friend|
+      break_friendship friend
+    end
   end
 
   def has_soundcloud?
