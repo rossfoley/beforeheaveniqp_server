@@ -16,9 +16,15 @@ class Room
   # Band Members #
   ################
 
+  def is_band_member?(user)
+    member_ids.include? user.id
+  end
+
   def add_band_member(user)
-    member_ids << user.id
-    save
+    unless is_band_member? user
+      member_ids << user.id
+      save
+    end
   end
 
   def remove_band_member(user)
@@ -39,7 +45,6 @@ class Room
     if owner.has_soundcloud?
       client = SoundCloud.new(access_token: owner.soundcloud_access_token)
       playlists = client.get('/me/playlists')
-      byebug
       if playlists.length > 0
         self.playlist = playlists[0]
         self.started_at = DateTime.now

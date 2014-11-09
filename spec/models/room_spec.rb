@@ -21,6 +21,16 @@ RSpec.describe Room, :type => :model do
       @room.remove_band_member @user
       expect(@room.band_members).to be_empty
     end
+
+    it 'can determine if a user is a band member' do
+      expect(@room.is_band_member? @user).to be true
+    end
+
+    it 'will only add unique band members' do
+      @room.add_band_member @user
+      @room.add_band_member @user
+      expect(@room.band_members.length).to eq(1)
+    end
   end
 
   describe 'SoundCloud playlists' do
