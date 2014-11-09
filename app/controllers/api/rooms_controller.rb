@@ -43,7 +43,7 @@ class Api::RoomsController < Api::BaseController
 
   def current_song
     room = Room.find(params[:id])
-    success room.current_song_url
+    success room.current_song
   end
 
   def add_band_member

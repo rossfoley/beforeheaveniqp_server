@@ -44,10 +44,10 @@ RSpec.describe Room, :type => :model do
     it 'can determine the current song playing' do
       @room.started_at = DateTime.now
       expect(@room.current_song).to_not be_nil
-      expect(@room.current_song['stream_url']).to eq('test1')
+      expect(@room.current_song[:song]['stream_url']).to eq('test1')
 
       @room.started_at = 13.seconds.ago
-      expect(@room.current_song['stream_url']).to eq('test2')
+      expect(@room.current_song[:song]['stream_url']).to eq('test2')
     end
   end
 end
