@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
       scope ':id' do
         put 'add_friend', to: 'users#add_friend'
+        delete 'remove_friend', to: 'users#remove_friend'
+        get 'get_friends', to: 'users#get_friends'
       end
     end
 
