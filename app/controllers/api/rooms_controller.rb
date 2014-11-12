@@ -14,8 +14,11 @@ class Api::RoomsController < Api::BaseController
       room_data = params.require(:room_data).permit! :name, :genre, :unity_data
     end
     room = Room.find(params[:id])
-    room.update_attributes room_data
-    success room
+    if room.update_attributes room_data
+      success room
+    else
+      failure :conflict, 'That room name is already in use' 
+    end
   end
 
   def create
@@ -25,9 +28,13 @@ class Api::RoomsController < Api::BaseController
       room_data = params.require(:room_data).permit!
     end
     room = Room.create(room_data)
-    room.add_band_member current_user
-    room.initialize_playlist
-    success room
+    if room.valid?
+      room.add_band_member current_user
+      room.initialize_playlist
+      success room
+    else
+      failure :conflict, 'A room with that name already exists!'
+    end
   end
 
   def destroy
