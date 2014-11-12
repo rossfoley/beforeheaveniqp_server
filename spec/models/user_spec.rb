@@ -32,7 +32,7 @@ RSpec.describe User, :type => :model do
     it 'break a friendship' do
       @friendA.make_friendship @friendB
       @friendB.break_friendship @friendA
-      
+
       expect(@friendA.friends.length).to eq(0)
       expect(@friendB.friends.length).to eq(0)
     end
@@ -46,6 +46,14 @@ RSpec.describe User, :type => :model do
       expect(@friendA.friends.length).to eq(0)
       expect(@friendB.reload.friends.length).to eq(1)
       expect(friendC.reload.friends.length).to eq(1)
+    end
+  end
+
+  describe '#current_room' do
+    it 'get current room' do
+      room = create :room
+      user = create :user, current_room_id: room.id
+      expect(user.current_room).to eql(room)
     end
   end
 end

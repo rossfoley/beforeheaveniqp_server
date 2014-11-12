@@ -76,7 +76,7 @@ class User
   end
 
   def current_room
-    Room.in(id: current_room_id)
+    Room.find current_room_id
   end
 
   def has_soundcloud?
