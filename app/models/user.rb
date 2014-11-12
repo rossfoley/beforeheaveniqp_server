@@ -27,6 +27,8 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
+  field :current_room_id
+
   ## SoundCloud access token
   field :soundcloud_access_token, type: String, default: ''
 
@@ -71,6 +73,10 @@ class User
     friends.each do |friend|
       break_friendship friend
     end
+  end
+
+  def current_room
+    Room.find current_room_id
   end
 
   def has_soundcloud?

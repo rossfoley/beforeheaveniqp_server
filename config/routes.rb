@@ -21,6 +21,8 @@ Rails.application.routes.draw do
         put 'add_friend', to: 'users#add_friend'
         delete 'remove_friend', to: 'users#remove_friend'
         get 'get_friends', to: 'users#get_friends'
+        put 'current_room', to: 'users#update_current_room'
+        get 'current_room', to: 'users#get_current_room'
       end
     end
 

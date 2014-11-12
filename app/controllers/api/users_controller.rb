@@ -29,4 +29,20 @@ class Api::UsersController < Api::BaseController
       failure :not_found, 'User with specified id does not exist'
     end
   end
+
+  def update_current_room
+    user = User.find(params[:id])
+    user.current_room_id = params[:room_id]
+    user.save
+    success user
+  end
+
+  def get_current_room
+    user = User.find(params[:id])
+    if user
+      success user.current_room
+    else
+      failure :not_found, 'User with specified id does not exist'
+    end
+  end
 end
