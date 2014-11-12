@@ -12,6 +12,8 @@ class Room
 
   search_in :name, :genre
 
+  validates :name, uniqueness: true
+
   ################
   # Band Members #
   ################
