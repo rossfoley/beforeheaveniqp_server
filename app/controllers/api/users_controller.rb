@@ -31,13 +31,9 @@ class Api::UsersController < Api::BaseController
   end
 
   def update_current_room
-    if params[:user_data].is_a? String
-      user_data = JSON.parse params[:user_data]
-    else
-      user_data = params.require(:user_data).permit! :current_room_id
-    end
     user = User.find(params[:id])
-    user.update_attributes user_data
+    user.current_room_id = params[:room_id]
+    user.save
     success user
   end
 
