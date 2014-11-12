@@ -12,11 +12,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'mongoid'
+gem 'mongoid_search'
 gem 'soundcloud'
 gem 'bson_ext'
 gem 'unicorn'
 gem 'devise'
-gem 'simple_token_authentication', github: 'rossfoley/simple_token_authentication'
+gem 'simple_token_authentication'
 gem 'json'
 gem 'rails_12factor', group: :production
 gem 'simplecov', require: false, group: :test

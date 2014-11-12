@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match '*path' => 'application#cors_preflight_check', via: :options, constraints: {method: 'OPTIONS'}
+  
   devise_for :users
 
   # SoundCloud account linking
@@ -11,6 +13,27 @@ Rails.application.routes.draw do
   
   # API Endpoints
   namespace :api do
-    post 'user/login' => 'user#login'
+    # Users
+    scope 'users' do
+      post 'login', to: 'login#login'
+
+      scope ':id' do
+        put 'add_friend', to: 'users#add_friend'
+        delete 'remove_friend', to: 'users#remove_friend'
+        get 'get_friends', to: 'users#get_friends'
+      end
+    end
+
+    # Rooms
+    resources :rooms, except: [:new, :edit] do
+      member do
+        get 'current_song'
+        put 'add_band_member'
+      end
+
+      collection do
+        get 'search/:search_term', to: 'rooms#search'
+      end
+    end
   end
 end

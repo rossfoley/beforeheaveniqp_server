@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+
   acts_as_token_authenticatable
 
   devise :database_authenticatable, :registerable,
@@ -17,7 +18,7 @@ class User
   field :remember_created_at, type: Time
 
   ## Token authentication
-  field :authentication_token, type: String
+  field :authentication_token
 
   ## Trackable
   field :sign_in_count,      type: Integer, default: 0
@@ -28,6 +29,49 @@ class User
 
   ## SoundCloud access token
   field :soundcloud_access_token, type: String, default: ''
+
+  ## Friends list
+  field :friend_ids, type: Array, default: []
+
+  ##################
+  # Friend Methods #
+  ##################
+
+  def make_friendship(friend)
+    self.add_friend(friend)
+    friend.add_friend(self)
+  end
+
+  def break_friendship(friend)
+    self.remove_friend(friend)
+    friend.remove_friend(self)
+  end
+
+  def friends
+    User.in(id: friend_ids)
+  end
+
+  def is_friends_with? other_user
+    friend_ids.include? other_user.id
+  end
+
+  def add_friend(friend)
+    unless is_friends_with? friend
+      friend_ids << friend.id
+      save
+    end
+  end
+
+  def remove_friend(friend)
+    friend_ids.delete friend.id
+    save
+  end
+
+  def remove_all_friends
+    friends.each do |friend|
+      break_friendship friend
+    end
+  end
 
   def has_soundcloud?
     soundcloud_access_token.length > 0
