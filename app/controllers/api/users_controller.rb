@@ -44,7 +44,7 @@ class Api::UsersController < Api::BaseController
   def get_current_room
     user = User.find(params[:id])
     if user
-      success Room.find(params[user.current_room])
+      success user.current_room
     else
       failure :not_found, 'User with specified id does not exist'
     end
