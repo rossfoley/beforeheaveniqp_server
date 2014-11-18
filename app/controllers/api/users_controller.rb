@@ -32,7 +32,7 @@ class Api::UsersController < Api::BaseController
   end
 
   def get_current_room
-    success user.current_room
+    success @user.current_room
   end
 
   private

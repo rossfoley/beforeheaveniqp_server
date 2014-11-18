@@ -15,7 +15,7 @@ class Api::RoomsController < Api::BaseController
         @room.started_at = DateTime.now
         @room.save
       end
-      success room
+      success @room
     else
       failure :conflict, 'That room name is already in use' 
     end
@@ -68,6 +68,6 @@ class Api::RoomsController < Api::BaseController
   end
 
   def room_data
-    params.require(:room_data).permit! :name, :genre, :unity_data, :playlist
+    params.require(:room_data).permit :name, :genre, :unity_data, :playlist
   end
 end
