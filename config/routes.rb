@@ -23,6 +23,8 @@ Rails.application.routes.draw do
         get 'get_friends', to: 'users#get_friends'
         put 'current_room', to: 'users#update_current_room'
         get 'current_room', to: 'users#get_current_room'
+        put 'is_online', to: 'users#update_is_online'
+        get 'is_online', to: 'users#get_is_online'
       end
     end
 
