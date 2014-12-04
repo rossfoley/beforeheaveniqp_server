@@ -17,7 +17,7 @@ gem 'soundcloud'
 gem 'bson_ext'
 gem 'unicorn'
 gem 'devise'
-gem 'simple_token_authentication'
+gem 'simple_token_authentication', github: 'rossfoley/simple_token_authentication'
 gem 'json'
 gem 'rails_12factor', group: :production
 gem 'simplecov', require: false, group: :test
@@ -34,4 +34,5 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'erb2haml'
 end
