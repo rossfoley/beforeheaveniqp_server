@@ -34,6 +34,16 @@ class Api::UsersController < Api::BaseController
   def get_current_room
     success @user.current_room
   end
+  
+  def update_is_online
+    @user.is_online = params[:is_online]
+    @user.save
+    success @user
+  end
+  
+  def get_is_online
+    success @user.is_online
+  end
 
   private
 
