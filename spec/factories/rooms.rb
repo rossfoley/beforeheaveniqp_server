@@ -6,5 +6,6 @@ FactoryGirl.define do
     genre { Faker::Commerce.department }
     visits 0
     member_ids []
+    unity_data ''
   end
 end

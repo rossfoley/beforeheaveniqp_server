@@ -47,12 +47,12 @@ class Api::RoomsController < Api::BaseController
   end
 
   def add_band_member
-    user = User.where(email: params[:new_member_email]).first
+    user = User.where(username: params[:new_member_username]).first
       if user
         @room.add_band_member(user)
         success @room
       else
-        failure :not_found, 'User with specified email does not exist'
+        failure :not_found, 'User with specified username does not exist'
       end
   end
 
