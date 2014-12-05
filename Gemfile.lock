@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rossfoley/simple_token_authentication.git
+  revision: 3417a1e45fc8ee02eb2fec9f44bfb17a504e716f
+  specs:
+    simple_token_authentication (1.7.0)
+      actionmailer (>= 3.2.6, < 5)
+      actionpack (>= 3.2.6, < 5)
+      devise (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,6 +76,8 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    erb2haml (0.1.5)
+      html2haml
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -228,10 +239,6 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.4.4)
-    simple_token_authentication (1.7.0)
-      actionmailer (>= 3.2.6, < 5)
-      actionpack (>= 3.2.6, < 5)
-      devise (~> 3.2)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -282,6 +289,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  erb2haml
   factory_girl_rails
   faker
   guard-rspec
@@ -298,7 +306,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  simple_token_authentication
+  simple_token_authentication!
   simplecov
   soundcloud
   spring
