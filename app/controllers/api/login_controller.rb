@@ -1,7 +1,7 @@
 class Api::LoginController < BaseController
   def login
-    if params[:email] and params[:password]
-      user = User.where(email: params[:email]).first
+    if params[:username] and params[:password]
+      user = User.where(username: params[:username]).first
       if user
         if user.valid_password? params[:password]
           success user
@@ -12,7 +12,7 @@ class Api::LoginController < BaseController
         failure :not_found, 'Could not find the specified user'
       end
     else
-      failure :bad_request, 'Email and password must be provided'
+      failure :bad_request, 'Username and password must be provided'
     end
   end
 end

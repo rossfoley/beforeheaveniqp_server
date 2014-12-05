@@ -2,22 +2,22 @@ class Api::UsersController < Api::BaseController
   before_filter :load_user
 
   def add_friend
-    friend = User.where(email: params[:new_friend_email]).first
+    friend = User.where(username: params[:new_friend_username]).first
     if friend
       @user.make_friendship(friend)
       success @user
     else
-      failure :not_found, 'Friend with specified email does not exist'
+      failure :not_found, 'Friend with specified username does not exist'
     end
   end
 
   def remove_friend
-    friend = User.where(email: params[:new_friend_email]).first
+    friend = User.where(username: params[:new_friend_username]).first
     if friend
       @user.break_friendship(friend)
       success @user
     else
-      failure :not_found, 'Friend with specified email does not exist'
+      failure :not_found, 'Friend with specified username does not exist'
     end
   end
 

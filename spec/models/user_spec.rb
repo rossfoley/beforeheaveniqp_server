@@ -18,17 +18,19 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '#friendship' do
+  describe 'friendship' do
     before :each do
       @friendA = create :user
       @friendB = create :user
     end
+
     it 'create a friendship' do
       @friendA.make_friendship @friendB
       
       expect(@friendA.friends.length).to eq(1)
       expect(@friendB.friends.length).to eq(1)
     end
+
     it 'break a friendship' do
       @friendA.make_friendship @friendB
       @friendB.break_friendship @friendA
@@ -36,6 +38,7 @@ RSpec.describe User, :type => :model do
       expect(@friendA.friends.length).to eq(0)
       expect(@friendB.friends.length).to eq(0)
     end
+
     it 'remove all friends' do
       friendC = create :user
       @friendA.make_friendship @friendB
