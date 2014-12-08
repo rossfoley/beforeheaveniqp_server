@@ -1,10 +1,10 @@
-%h1 SoundCloud - Link Account
+%h1 SoundCloud
 - if current_user.has_soundcloud?
-  %h2 You have already linked your SoundCloud account
   %h2 Tracks:
   %ul
     - @tracks.each do |track|
       %li= link_to track.title, "#{track.stream_url}?client_id=0cb45a6052596ee086177b11b29e8809"
 - else
+  %h2 Link Your SoundCloud Account
   = link_to soundcloud_authorize_path do
     = image_tag 'soundcloud_connect.png'
