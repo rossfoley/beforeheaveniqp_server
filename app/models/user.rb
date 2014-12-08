@@ -24,6 +24,9 @@ class User
   ## Friends list
   field :friend_ids, type: Array, default: []
 
+  ## Online status
+  field :is_online, type: Boolean, default: false
+
   ##################
   # Friend Methods #
   ##################
