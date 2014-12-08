@@ -26,9 +26,15 @@ class Api::UsersController < Api::BaseController
   end
 
   def update_current_room
-    @user.current_room_id = params[:room_id]
-    @user.save
-    success @user
+    room = Room.find(params[:room_id])
+    if room
+      room.visits += 1
+      room.save
+
+      @user.current_room_id = params[:room_id]
+      @user.save
+      success @user
+    end
   end
 
   def get_current_room
