@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         get 'current_room', to: 'users#get_current_room'
         put 'is_online', to: 'users#update_is_online'
         get 'is_online', to: 'users#get_is_online'
+        get 'playlists', to: 'users#get_playlists'
       end
     end
 

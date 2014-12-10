@@ -50,6 +50,10 @@ class Api::UsersController < Api::BaseController
   def get_is_online
     success @user.is_online
   end
+  
+  def get_playlists
+    success @user.get_playlists
+  end
 
   private
 
