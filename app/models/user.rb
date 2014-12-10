@@ -74,6 +74,13 @@ class User
   def has_soundcloud?
     soundcloud_access_token.length > 0
   end
+  
+  def get_playlists
+    if has_soundcloud?
+      client = SoundCloud.new(access_token: soundcloud_access_token)
+      playlists = client.get('/me/playlists')
+    end
+  end
 
   # Necessary to make Devise work with Rails 4.1 and Mongoid
   def self.serialize_from_session(key, salt)
