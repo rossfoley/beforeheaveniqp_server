@@ -68,6 +68,12 @@ class Api::RoomsController < Api::BaseController
   end
 
   def room_data
-    params.require(:room_data).permit :name, :genre, :unity_data, :playlist
+    if params[:room_data]
+      if params[:room_data].is_a? String
+        JSON.parse params[:room_data]
+      else
+        params.require(:room_data).permit :name, :genre, :unity_data, :playlist
+      end
+    end
   end
 end
