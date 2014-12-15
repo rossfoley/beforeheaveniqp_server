@@ -58,10 +58,10 @@ class Room
   def current_song
     if playlist
       elapsed_ms = ((DateTime.now - started_at) * 24 * 60 * 60 * 1000).to_i
-      playlist_location = elapsed_ms % playlist['duration']
+      playlist_location = elapsed_ms % playlist['duration'].to_i
       song = playlist['tracks'].find do |track|
-        if playlist_location > track['duration']
-          playlist_location -= track['duration']
+        if playlist_location > track['duration'].to_i
+          playlist_location -= track['duration'].to_i
           false
         else
           true
