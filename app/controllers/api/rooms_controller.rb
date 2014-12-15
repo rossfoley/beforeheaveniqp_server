@@ -11,7 +11,7 @@ class Api::RoomsController < Api::BaseController
 
   def update
     if @room.update_attributes room_data
-      if @room.playlist_changed?
+      if room_data.has_key? 'playlist' or room_data.has_key? :playlist
         @room.started_at = DateTime.now
         @room.save
       end
