@@ -48,12 +48,12 @@ class Api::RoomsController < Api::BaseController
 
   def add_band_member
     user = User.where(username: params[:new_member_username]).first
-      if user
-        @room.add_band_member(user)
-        success @room
-      else
-        failure :not_found, 'User with specified username does not exist'
-      end
+    if user
+      @room.add_band_member(user)
+      success @room
+    else
+      failure :not_found, 'User with specified username does not exist'
+    end
   end
 
   private
@@ -72,7 +72,7 @@ class Api::RoomsController < Api::BaseController
       if params[:room_data].is_a? String
         JSON.parse params[:room_data]
       else
-        params.require(:room_data).permit :name, :genre, :unity_data, :playlist
+        params.require(:room_data).permit!
       end
     end
   end
