@@ -3,16 +3,11 @@ class User
 
   acts_as_token_authenticatable
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :rememberable 
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
+  field :username,           type: String, default: ""
   field :encrypted_password, type: String, default: ""
-
-  ## Recoverable
-  field :reset_password_token,   type: String
-  field :reset_password_sent_at, type: Time
 
   ## Rememberable
   field :remember_created_at, type: Time
@@ -20,18 +15,17 @@ class User
   ## Token authentication
   field :authentication_token
 
-  ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
-  field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
-  field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
+  ## Current Room
+  field :current_room_id
 
   ## SoundCloud access token
   field :soundcloud_access_token, type: String, default: ''
 
   ## Friends list
   field :friend_ids, type: Array, default: []
+
+  ## Online status
+  field :is_online, type: Boolean, default: false
 
   ##################
   # Friend Methods #
@@ -71,6 +65,10 @@ class User
     friends.each do |friend|
       break_friendship friend
     end
+  end
+
+  def current_room
+    Room.find current_room_id
   end
 
   def has_soundcloud?
